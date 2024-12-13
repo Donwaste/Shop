@@ -1,0 +1,282 @@
+html {
+    scroll-behavior: smooth;
+  }
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+.promo {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #000; 
+}
+
+.logo-section {
+    background-color: #d9ff00;
+    padding: 10px 20px;
+    display: flex;
+    border-right:2px solid #000;
+}
+
+.logo-link {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+}
+
+.menu-section {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.menu {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-link {
+    display: flex;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.menu-link:hover {
+    text-decoration: underline;
+}
+
+.user-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.user-link {
+    color: #000;
+    font-size: 18px;
+}
+
+.cart-link {
+    display: flex;
+    align-items: center;
+    color: #000;
+}
+
+.cart-icon {
+    font-size: 20px;
+}
+
+.cart-count {
+    top: -5px;
+    right: -10px;
+    background-color: #000;
+    color: #d9ff00;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  .promo-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #ffffff, #e3ff8a);
+    padding: 50px 20px;
+  }
+  
+  .promo-content {
+    display: flex;
+    flex-direction: row;
+    max-width: 1200px;
+    width: 100%;
+  }
+  
+  .promo-text {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .promo-icon {
+    font-size: 2rem;
+    color: #000;
+  }
+  
+  .promo-text h1 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+  }
+  
+  .discount {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #000;
+    margin: 10px 0;
+  }
+  
+  .promo-info {
+    font-size: 1.2rem;
+  }
+  
+  .promo-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .promo-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .promo-link {
+    text-align: center;
+    background: #fff;
+    padding: 20px 0;
+    border-bottom: 2px solid #000;
+  }
+  
+  .promo-anchor {
+
+    color: #000;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .promo-anchor:hover {
+    text-decoration: underline;
+  }
+  
+  .arrow {
+    font-size: 1.5rem;
+    margin: 0 10px;     
+    font-weight: bold;
+  }
+
+  .footer {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-info p {
+    margin: 5px 0;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .footer-links div {
+    min-width: 150px;
+  }
+  
+  .footer-links h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links ul {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    transition: color 0.3s;
+  }
+  
+  .footer-links a:hover {
+    color: #e3ff8a;
+  }
+  
+  .footer-socials {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-socials a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+  }
+  
+  .footer-socials a:hover {
+    color: #e3ff8a;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    background-color: #e3ff8a;
+    color: #000;
+    padding: 10px 20px;
+  }
+  
+  .footer-bottom a {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .footer-bottom a:hover {
+    text-decoration: underline;
+  }
+  
