@@ -243,30 +243,102 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.promo-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.promo-new {
+  display: flex;
+  font-weight:  800;
+}
 
+.product-grid {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 20px; 
+  justify-content: space-between; 
+  max-width: 80%; 
+  margin: 0 auto;
+}
 
+.t-shirt {
+  width: calc((100% / 4) - 20px);
+  box-sizing: border-box; 
+  padding: 10px;
+}
 
+.t-shirt:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.product-image {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-size: cover;
+  height: 300px;
+}
 
-  .promo-section {
+.container {
+  margin-top: 10px;
+}
+
+.name {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #555;
+}
+
+.price {
+  font-size: 16px;
+  color: #555;
+}
+
+.after-new {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-new {
+  background-color: #000;
+  color: #d9ff00;
+  padding: 20px 40px;
+  text-align: center;
+  font-size: 18px;
+  display: inline-block;
+  border-radius: 5px; 
+  transition: all 0.3s ease; 
+}
+
+.button-new:hover {
+  background-color: #d9ff00;
+  color: #000;
+  border: 2px solid black;
+}
+
+.promo-section {
     display: flex;
     justify-content: center;
     align-items: center;
     background: linear-gradient(to bottom, #ffffff, #e3ff8a);
-    padding: 50px 20px;
+    padding: 0%;
+    margin-right: 0;
+    height: 800px;
   }
   
   .promo-content {
     display: flex;
-    flex-direction: row;
-    max-width: 1200px;
     width: 100%;
   }
   
   .promo-text {
     flex: 1;
-    text-align: left;
+    text-align: center;
   }
   
   .promo-icon {
@@ -280,7 +352,7 @@ body {
   }
   
   .discount {
-    font-size: 4rem;
+    font-size: 5rem;
     font-weight: bold;
     color: #000;
     margin: 10px 0;
@@ -291,15 +363,15 @@ body {
   }
   
   .promo-image {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
+    height: 600px;
+
   }
   
   .promo-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
+    height: 700px;
+    width: 600px;
   }
 
   .promo-link {
