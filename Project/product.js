@@ -1,10 +1,6 @@
 import { products } from "./products.js";
-import {
-  getCartFromStorage,
-  sumBasket,
-  renderBasket,
-  setupCounter,
-} from "./basketUtils.js";
+import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
+import { initializeCart } from "./cartLogic.js";
 
 const change = (direction) => {
   const params = new URLSearchParams(location.search);
@@ -36,18 +32,18 @@ function renderProduct(product) {
    <div class="product-page">
         <div class="product-navigation">
           <div class="product-navigation-left">
-            <a href="index.html" style="color: black">Главная /</a>
-            <p style="color: dimgray">Ваш товар</p>
+            <a href="index.html" style="color: black">Home /</a>
+            <p style="color: dimgray">Your product</p>
           </div>
           <div class="product-navigation-right">
             <div class="navigation-buttons">
               <a href="${change(
                 "-"
-              )}" class="nav-btn" data-direction="-" id="prev-btn">&lt; Назад</a>
+              )}" class="nav-btn" data-direction="-" id="prev-btn">&lt; Previous</a>
               <span class="divider">|</span>
               <a href="${change(
                 "+"
-              )}" class="nav-btn" id="next-btn">Вперед &gt;</a>
+              )}" class="nav-btn" id="next-btn">Next &gt;</a>
             </div>
           </div>
         </div>
@@ -63,23 +59,23 @@ function renderProduct(product) {
           <div class="product-right">
             <div class="product-interaction">
               <h1>${product.name}</h1>
-              <p>Артикул: ${product.article}</p>
+              <p>Article: ${product.article}</p>
               <span class="product-price" style="font-size: 24px; margin-bottom: 20px; display: block">${
                 product.price
               }</span>
-              <p>Количество *</p>
-              <div class="product-counter">
+              <p>Quantity *</p>
+              <div class="product-counter-page">
                   <button class="btn" id="decrease">-</button>
                   <span id="count">1</span>
                   <button class="btn" id="increase">+</button>
               </div>
-              <button class="product-buy-button">Добавить в корзину</button>
+              <button class="product-buy-button">Add to cart</button>
             </div>
 
             <div class="product-details-accordion">
               <details class="accordion-item">
                 <summary class="accordion-header">
-                  <span class="accordion-title">О ТОВАРЕ</span>
+                  <span class="accordion-title">ABOUT THE PRODUCT</span>
                   <span class="accordion-icon"></span>
                 </summary>
                 <div class="accordion-content">
@@ -89,7 +85,7 @@ function renderProduct(product) {
 
               <details class="accordion-item">
                 <summary class="accordion-header">
-                  <span class="accordion-title">ВОЗВРАТ ТОВАРА И ДЕНЕГ</span>
+                  <span class="accordion-title">PRODUCT & MONEY REFUND</span>
                   <span class="accordion-icon"></span>
                 </summary>
                 <div class="accordion-content">
@@ -99,7 +95,7 @@ function renderProduct(product) {
 
               <details class="accordion-item">
                 <summary class="accordion-header">
-                  <span class="accordion-title">ДОСТАВКА</span>
+                  <span class="accordion-title">DELIVERY</span>
                   <span class="accordion-icon"></span>
                 </summary>
                 <div class="accordion-content">
@@ -173,8 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   counterRender();
   updateButtons(currentIndex);
+
+  const renderCart = initializeCart();
+
   const addInBasket = document.querySelector(".product-buy-button");
   addInBasket.addEventListener("click", (e) => {
+    const cart = getCartFromStorage();
     const existingItem = cart.find((item) => item.id === itemId);
 
     if (existingItem) {
@@ -182,14 +182,16 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       cart.push({ id: itemId, count });
     }
-
     localStorage.setItem("cart", JSON.stringify(cart));
 
     const updatedTotalCount = sumBasket(cart);
     renderBasket(updatedTotalCount);
 
+    renderCart();
+
     count = 1;
     counterRender();
   });
+
   renderBasket(totalCount);
 });

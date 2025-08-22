@@ -53,7 +53,7 @@ body {
   display: flex;
   flex-grow: 1;
   align-items: stretch;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 0px;
   height: 60px;
 }
@@ -98,12 +98,9 @@ body {
   justify-content: center;
   color: #000;
   font-size: 18px;
-  border-left: 2px solid #000;
-  border-right: 2px solid #000;
   height: 100%;
   text-align: center;
   padding-left: 40px;
-  padding-right: 20px;
 }
 
 .user-icon {
@@ -117,26 +114,28 @@ body {
   align-items: center;
   color: #000;
 }
-
 .cart-icon {
-  font-size: 20px;
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
 }
 
-.cart-count {
-  top: -5px;
-  right: -10px;
-  background-color: #000;
+.cart-icon-wrapper {
+  position: relative;
+  display: flex;
+}
+
+.cart-icon-wrapper .cart-count {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   color: #d9ff00;
   font-size: 12px;
   font-weight: bold;
-  border-radius: 50%;
-  width: 18px;
-  height: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent;
+  pointer-events: none;
 }
-
 .logo {
   display: flex;
   justify-content: center;
