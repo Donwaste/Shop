@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" type="text/css" href="index.css" />
     <link rel="stylesheet" href="cartStyle.css" />
+    <link rel="stylesheet" type="text/css" href="basket.css" />
     <script defer src="basketScipt.js" type="module"></script>
     <script defer src="basketUtils.js" type="module"></script>
+    <style></style>
   </head>
   <body>
     <header>
@@ -55,7 +61,7 @@
             <div class="item-image-wrapper">
               <img
                 class="item-image"
-                src="images/tshirt-yellow.jpg"
+                src="images/1.jpg"
                 alt="Yellow T-shirt with a print"
               />
             </div>
@@ -70,15 +76,46 @@
                 <button class="btn increase-btn">+</button>
               </div>
               <span class="item-subtotal-price">1150.00 ₴</span>
-              <button class="btn delete-item-btn">🗑️</button>
+              <button class="btn delete-item-btn">
+                <img class="item-delete" src="images/bin.png" alt="Delete" />
+              </button>
+            </div>
+          </div>
+          <div class="cart-item">
+            <div class="item-image-wrapper">
+              <img
+                class="item-image"
+                src="images/1.jpg"
+                alt="Yellow T-shirt with a print"
+              />
+            </div>
+            <div class="item-details">
+              <p class="item-title">Your Product</p>
+              <span class="item-price-per-unit">1150.00 ₴</span>
+            </div>
+            <div class="item-controls">
+              <div class="product-counter">
+                <button class="btn decrease-btn">-</button>
+                <span class="item-count">1</span>
+                <button class="btn increase-btn">+</button>
+              </div>
+              <span class="item-subtotal-price">1150.00 ₴</span>
+              <button class="btn delete-item-btn">
+                <img class="item-delete" src="images/bin.png" alt="Delete" />
+              </button>
             </div>
           </div>
         </div>
         <div class="cart-options">
           <button class="option-btn add-promo-btn">
-            Add a promotional code
+            <img class="option-icon" src="images/promo.svg" alt="Promo Code" />
+            <span>Add a promotional code</span>
           </button>
-          <button class="option-btn add-wish-btn">Add a wish</button>
+
+          <button class="option-btn add-wish-btn">
+            <img class="option-icon" src="images/whish.svg" alt="Wish" />
+            <span>Add a wish</span>
+          </button>
         </div>
       </section>
 
@@ -99,7 +136,9 @@
             <span>1150.00 ₴</span>
           </div>
           <button class="checkout-btn">Place Order</button>
-          <p class="secure-info">🔒 Secure order</p>
+          <p class="secure-info">
+            <img src="images/padlock.png" class="padlock-icon" /> Secure order
+          </p>
         </div>
       </aside>
     </main>
