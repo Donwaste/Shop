@@ -71,12 +71,80 @@ main {
   width: 30px;
   height: 30px;
 }
+
 .cart-options {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 15px;
 }
+
+.wish-textarea,
+.promo-input-container {
+  box-sizing: border-box;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+  transition: all 0.4s ease-in-out;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.wish-textarea,
+.promo-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #000000;
+}
+
+.wish-textarea::placeholder,
+.promo-input::placeholder {
+  color: #aaaaaa;
+}
+
+.promo-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+
+.promo-input {
+  flex-grow: 1;
+}
+
+.wish-container:focus-within .wish-textarea {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 10px;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #000000;
+}
+
+.promo-container:focus-within .promo-input-container {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 10px;
+  height: 40px;
+}
+
+.apply-promo-btn {
+  background-color: black;
+  color: #d9ff00;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+  width: 100px;
+  flex-shrink: 0;
+}
+.promo-container:focus-within .apply-promo-btn {
+  height: 40px;
+}
+
 .option-btn {
   background: none;
   border: none;
@@ -86,23 +154,23 @@ main {
   cursor: pointer;
   font-size: 16px;
 }
-.option-icon {
-  opacity: 1;
-  transition: opacity 0.2s ease-in-out;
-}
-.option-btn:hover .option-icon,
-.option-btn:focus .option-icon {
-  opacity: 0.6;
-}
-.option-btn:hover span,
-.option-btn:focus span {
-  color: grey;
-}
+
 .option-icon {
   width: 15px;
   height: 15px;
   margin-right: 8px;
 }
+
+.option-btn:hover span,
+.option-btn:focus span {
+  color: grey;
+}
+
+.option-btn:hover .option-icon,
+.option-btn:focus .option-icon {
+  opacity: 0.6;
+}
+
 .details-section {
   width: 30%;
   flex-shrink: 0;
