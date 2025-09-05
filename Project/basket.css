@@ -81,7 +81,6 @@ main {
 
 .wish-textarea,
 .promo-input-container {
-  box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
   height: 0;
@@ -123,6 +122,8 @@ main {
   height: 100px;
   padding: 12px;
   border: 1px solid #000000;
+  resize: none;
+  width: 400px;
 }
 
 .promo-container:focus-within .promo-input-container {

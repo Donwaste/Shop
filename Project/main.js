@@ -45,5 +45,5 @@ const totalCount = sumBasket(cart);
 renderBasket(totalCount);
 
 document.addEventListener("DOMContentLoaded", () => {
-  initializeCart();
+  initializeCart("sidebar");
 });

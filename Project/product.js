@@ -1,6 +1,6 @@
 import { products } from "./products.js";
 import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
-import { initializeCart } from "./cartLogic.js";
+import { initializeCart, updateAllCarts } from "./cartLogic.js";
 
 const change = (direction) => {
   const params = new URLSearchParams(location.search);
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
   counterRender();
   updateButtons(currentIndex);
 
-  const renderCart = initializeCart();
+  const renderCart = initializeCart("sidebar");
 
   const addInBasket = document.querySelector(".product-buy-button");
   addInBasket.addEventListener("click", (e) => {
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const updatedTotalCount = sumBasket(cart);
     renderBasket(updatedTotalCount);
 
-    renderCart();
+    updateAllCarts();
 
     count = 1;
     counterRender();
