@@ -1,26 +1,23 @@
-import { products } from "./products.js";
+import { getProducts } from "./fetch.js";
 import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
 import { initializeCart, updateAllCarts } from "./cartLogic.js";
 
-const change = (direction) => {
+const change = (direction, list) => {
   const params = new URLSearchParams(location.search);
-  let index = products.findIndex((a) => a.id === params.get("id"));
+  let index = list.findIndex((a) => a.id === params.get("id"));
   if (index === -1) {
     return;
   }
-
-  if (direction === "+" && index < products.length - 1) {
+  if (direction === "+" && index < list.length - 1) {
     index++;
   }
-
   if (direction === "-" && index > 0) {
     index--;
   }
-
-  return `product.html?id=${products[index].id}`;
+  return `product.html?id=${list[index].id}`;
 };
 
-function renderProduct(product) {
+function renderProduct(product, list) {
   const staticMainDescription =
     "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repudiandae aliquam odit magni omnis nemo debitis iusto, eius id eaque officia eos perspiciatis quas, dolore consequuntur porro. Corporis earum totam repudiandae!";
   const staticReturnPolicy =
@@ -38,11 +35,13 @@ function renderProduct(product) {
           <div class="product-navigation-right">
             <div class="navigation-buttons">
               <a href="${change(
-                "-"
+                "-",
+                list
               )}" class="nav-btn" data-direction="-" id="prev-btn">&lt; Previous</a>
               <span class="divider">|</span>
               <a href="${change(
-                "+"
+                "+",
+                list
               )}" class="nav-btn" id="next-btn">Next &gt;</a>
             </div>
           </div>
@@ -114,84 +113,84 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("product-container");
   const params = new URLSearchParams(document.location.search);
   const itemId = params.get("id");
-  const currentIndex = products.findIndex((a) => a.id === itemId);
-  const currentProduct = products.find((product) => product.id === itemId);
+  getProducts().then((products) => {
+    const currentIndex = products.findIndex((a) => a.id === itemId);
+    const currentProduct = products.find((product) => product.id === itemId);
 
-  container.innerHTML = renderProduct(currentProduct);
+    container.innerHTML = renderProduct(currentProduct, products);
 
-  const decreaseBtn = document.getElementById("decrease");
-  const increaseBtn = document.getElementById("increase");
-  const countSpan = document.getElementById("count");
+    const decreaseBtn = document.getElementById("decrease");
+    const increaseBtn = document.getElementById("increase");
+    const countSpan = document.getElementById("count");
 
-  let count = 1;
+    let count = 1;
 
-  const counterRender = () => {
-    countSpan.textContent = count;
-    decreaseBtn.style.color = count === 1 ? "gray" : "black";
-  };
+    const counterRender = () => {
+      countSpan.textContent = count;
+      decreaseBtn.style.color = count === 1 ? "gray" : "black";
+    };
 
-  decreaseBtn.addEventListener("click", () => {
-    if (count > 1) {
-      count--;
-      counterRender();
-    }
-  });
-
-  increaseBtn.addEventListener("click", () => {
-    count++;
-    countSpan.textContent = count;
-    counterRender();
-  });
-
-  const updateButtons = (index) => {
-    const prevButton = document.getElementById("prev-btn");
-    const nextButton = document.getElementById("next-btn");
-    prevButton.disabled = index === 0;
-    nextButton.disabled = index === products.length - 1;
-    prevButton.style.color = prevButton.disabled ? "grey" : "";
-    nextButton.style.color = nextButton.disabled ? "grey" : "";
-  };
-
-  const accordions = document.querySelectorAll(
-    ".product-details-accordion .accordion-item"
-  );
-  accordions.forEach((currentAccordion) => {
-    currentAccordion.addEventListener("toggle", () => {
-      if (currentAccordion.open) {
-        accordions.forEach((otherAccordion) => {
-          if (otherAccordion !== currentAccordion) {
-            otherAccordion.open = false;
-          }
-        });
+    decreaseBtn.addEventListener("click", () => {
+      if (count > 1) {
+        count--;
+        counterRender();
       }
     });
-  });
 
-  counterRender();
-  updateButtons(currentIndex);
+    increaseBtn.addEventListener("click", () => {
+      count++;
+      countSpan.textContent = count;
+      counterRender();
+    });
 
-  const renderCart = initializeCart("sidebar");
+    const updateButtons = (index) => {
+      const prevButton = document.getElementById("prev-btn");
+      const nextButton = document.getElementById("next-btn");
+      prevButton.disabled = index === 0;
+      nextButton.disabled = index === products.length - 1;
+      prevButton.style.color = prevButton.disabled ? "grey" : "";
+      nextButton.style.color = nextButton.disabled ? "grey" : "";
+    };
 
-  const addInBasket = document.querySelector(".product-buy-button");
-  addInBasket.addEventListener("click", (e) => {
-    const cart = getCartFromStorage();
-    const existingItem = cart.find((item) => item.id === itemId);
+    const accordions = document.querySelectorAll(
+      ".product-details-accordion .accordion-item"
+    );
+    accordions.forEach((currentAccordion) => {
+      currentAccordion.addEventListener("toggle", () => {
+        if (currentAccordion.open) {
+          accordions.forEach((otherAccordion) => {
+            if (otherAccordion !== currentAccordion) {
+              otherAccordion.open = false;
+            }
+          });
+        }
+      });
+    });
 
-    if (existingItem) {
-      existingItem.count += count;
-    } else {
-      cart.push({ id: itemId, count });
-    }
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    const updatedTotalCount = sumBasket(cart);
-    renderBasket(updatedTotalCount);
-
-    updateAllCarts();
-
-    count = 1;
     counterRender();
-  });
+    updateButtons(currentIndex);
 
-  renderBasket(totalCount);
+    const addInBasket = document.querySelector(".product-buy-button");
+    addInBasket.addEventListener("click", (e) => {
+      const cart = getCartFromStorage();
+      const existingItem = cart.find((item) => item.id === itemId);
+
+      if (existingItem) {
+        existingItem.count += count;
+      } else {
+        cart.push({ id: itemId, count });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      const updatedTotalCount = sumBasket(cart);
+      renderBasket(updatedTotalCount);
+
+      updateAllCarts();
+
+      count = 1;
+      counterRender();
+    });
+
+    renderBasket(totalCount);
+  });
 });

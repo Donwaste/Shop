@@ -1,7 +1,8 @@
-import { products } from "./products.js";
+import { getProducts } from "./fetch.js";
 import { getCartFromStorage } from "./basketUtils.js";
 
 export const initializeCart = (type = "sidebar") => {
+  let allProducts = [];
   const cartContainer = document.querySelector(".cart-items");
   const cartSum = document.querySelector(".cart-sum-number");
   const cartCount = document.querySelectorAll(".cart-count");
@@ -123,7 +124,7 @@ export const initializeCart = (type = "sidebar") => {
     const productsToRender = [];
 
     cartItems.forEach((cartItem) => {
-      const foundProduct = products.find(
+      const foundProduct = allProducts.find(
         (product) => product.id === cartItem.id
       );
       if (foundProduct) {
@@ -175,21 +176,16 @@ export const initializeCart = (type = "sidebar") => {
     } else {
       container = cartContainer;
     }
-    
+
     if (container) {
       container.innerHTML = renderBasketStorage(productsToRender);
     }
   };
 
-  let eventContainer;
-  if (type === "page") {
-    eventContainer = cartItemsList;
-  } else {
-    eventContainer = cartContainer;
-  }
-  
-  if (eventContainer) {
-    eventContainer.addEventListener("click", (event) => {
+  const itemsContainer = type === "page" ? cartItemsList : cartContainer;
+
+  if (itemsContainer) {
+    itemsContainer.addEventListener("click", (event) => {
       const cartItemElement = event.target.closest(".cart-item");
       if (!cartItemElement) return;
 
@@ -237,7 +233,12 @@ export const initializeCart = (type = "sidebar") => {
     });
   }
 
-  render();
+  getProducts()
+    .then((list) => {
+      allProducts = list;
+      render();
+    })
+    .catch((error) => console.error("Failed to load products:", error));
 
   if (!window.cartUpdateCallbacks) {
     window.cartUpdateCallbacks = [];

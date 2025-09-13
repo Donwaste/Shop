@@ -1,10 +1,13 @@
-import { products } from "./products.js";
+import { getProducts } from "./fetch.js";
 import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
 import { initializeCart } from "./cartLogic.js";
 
 const productContainer = document.querySelector(".product-grid");
 
 const renderProducts = (products) => {
+  if (!Array.isArray(products) || products.length === 0) {
+    return;
+  }
   products.forEach((product) => {
     const productElement = document.createElement("div");
     productElement.classList.add("product-item");
@@ -30,7 +33,13 @@ const renderProducts = (products) => {
 };
 
 if (productContainer) {
-  renderProducts(products);
+  getProducts()
+    .then((list) => {
+      renderProducts(list);
+    })
+    .catch((error) => {
+      console.error("Failed to load products:", error);
+    });
   productContainer.addEventListener("click", (event) => {
     const productItem = event.target.closest(".product-item");
     if (productItem) {
