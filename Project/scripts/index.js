@@ -1,9 +1,12 @@
-import { getProducts } from "./fetch.js";
-import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
-import { initializeCart } from "./cartLogic.js";
+import { getProducts } from "/data/fetch.js";
+import {
+  getCartFromStorage,
+  sumBasket,
+  renderBasket,
+} from "/utils/basketUtils.js";
+import { initializeCart } from "/scripts/cartLogic.js";
 
 const productContainer = document.querySelector(".product-grid");
-
 const renderProducts = (products) => {
   if (!Array.isArray(products) || products.length === 0) {
     return;
@@ -31,20 +34,26 @@ const renderProducts = (products) => {
     productContainer.appendChild(productElement);
   });
 };
-
 if (productContainer) {
+  productContainer.textContent = "Loading";
   getProducts()
     .then((list) => {
+      if (!Array.isArray(list) || list.length === 0) {
+        productContainer.textContent = "Товары не найдены";
+        return;
+      }
+      productContainer.innerHTML = "";
       renderProducts(list);
     })
     .catch((error) => {
+      productContainer.textContent = "Failed to load products:";
       console.error("Failed to load products:", error);
     });
   productContainer.addEventListener("click", (event) => {
     const productItem = event.target.closest(".product-item");
     if (productItem) {
       const productId = productItem.dataset.id;
-      window.location.href = `product.html?id=${productId}`;
+      window.location.href = `../pages/product.html?id=${productId}`;
     }
   });
 }

@@ -1,4 +1,4 @@
-const API_URL = "./api.json";
+const API_URL = "/data/api.json";
 let productsCache = null;
 let productsPromise = null;
 
@@ -24,7 +24,13 @@ export async function getProducts() {
         : Array.isArray(data?.products)
         ? data.products
         : [];
-      productsCache = normalized;
+      productsCache = normalized.map((p) => ({
+        ...p,
+        image:
+          typeof p.image === "string" && !/^([a-z]+:)?\//i.test(p.image)
+            ? `/${p.image.replace(/^\/+/, "")}`
+            : p.image,
+      }));
       return productsCache;
     })
     .catch((error) => {

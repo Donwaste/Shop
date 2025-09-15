@@ -1,0 +1,248 @@
+main {
+  display: flex;
+  justify-content: center;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+.cart-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+}
+.cart-section h2 {
+  border-bottom: 1.8px solid black;
+  padding-bottom: 15px;
+  margin: 0;
+}
+.cart-items-list .cart-item {
+  padding: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  height: max-content;
+  border-bottom: 2px solid black;
+}
+.item-image-wrapper {
+  width: 110px;
+  height: 140px;
+  border: 1px solid grey;
+}
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.item-details {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 10px;
+}
+.item-title {
+  margin-top: 0;
+}
+.item-controls {
+  display: flex;
+  flex-direction: row;
+  margin-left: 80px;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items: center;
+}
+.item-delete {
+  height: 20px;
+}
+.item-controls .product-counter {
+  display: inline-flex;
+  border: 1px solid black;
+  height: 30px;
+  width: 90px;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+.item-controls .btn {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.cart-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.wish-textarea,
+.promo-input-container {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  margin-top: 0;
+  transition: all 0.4s ease-in-out;
+  border: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.wish-textarea,
+.promo-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #000000;
+}
+
+.wish-textarea::placeholder,
+.promo-input::placeholder {
+  color: #aaaaaa;
+}
+
+.promo-input-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
+
+.promo-input {
+  flex-grow: 1;
+}
+
+.wish-container:focus-within .wish-textarea {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 10px;
+  height: 100px;
+  padding: 12px;
+  border: 1px solid #000000;
+  resize: none;
+  width: 400px;
+}
+
+.promo-container:focus-within .promo-input-container {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 10px;
+  height: 40px;
+}
+
+.apply-promo-btn {
+  background-color: black;
+  color: #d9ff00;
+  border: none;
+  padding: 0 15px;
+  cursor: pointer;
+  width: 100px;
+  flex-shrink: 0;
+}
+.promo-container:focus-within .apply-promo-btn {
+  height: 40px;
+}
+
+.option-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.option-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+}
+
+.option-btn:hover span,
+.option-btn:focus span {
+  color: grey;
+}
+
+.option-btn:hover .option-icon,
+.option-btn:focus .option-icon {
+  opacity: 0.6;
+}
+
+.details-section {
+  width: 30%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.details-section .section-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  padding-bottom: 15px;
+  border-bottom: 2px solid black;
+}
+
+.details-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid black;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.delivery-link {
+  color: black;
+  text-decoration: underline;
+  font-size: 16px;
+}
+
+.details-total {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.total-row {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: black;
+  color: #d9ff00;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.secure-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: black;
+  margin: 0;
+}
+
+.padlock-icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  object-fit: cover;
+}

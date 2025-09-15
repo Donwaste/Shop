@@ -1,5 +1,9 @@
-import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
-import { initializeCart } from "./cartLogic.js";
+import {
+  getCartFromStorage,
+  sumBasket,
+  renderBasket,
+} from "/utils/basketUtils.js";
+import { initializeCart } from "/scripts/cartLogic.js";
 
 initializeCart("page");
 

@@ -1,6 +1,10 @@
-import { getProducts } from "./fetch.js";
-import { getCartFromStorage, sumBasket, renderBasket } from "./basketUtils.js";
-import { initializeCart, updateAllCarts } from "./cartLogic.js";
+import { getProducts } from "/data/fetch.js";
+import {
+  getCartFromStorage,
+  sumBasket,
+  renderBasket,
+} from "/utils/basketUtils.js";
+import { initializeCart, updateAllCarts } from "/scripts/cartLogic.js";
 
 const change = (direction, list) => {
   const params = new URLSearchParams(location.search);
@@ -8,13 +12,9 @@ const change = (direction, list) => {
   if (index === -1) {
     return;
   }
-  if (direction === "+" && index < list.length - 1) {
-    index++;
-  }
-  if (direction === "-" && index > 0) {
-    index--;
-  }
-  return `product.html?id=${list[index].id}`;
+  if (direction === "+" && index < list.length - 1) index++;
+  if (direction === "-" && index > 0) index--;
+  return `../pages/product.html?id=${list[index].id}`;
 };
 
 function renderProduct(product, list) {
@@ -169,6 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counterRender();
     updateButtons(currentIndex);
+
+    const renderCart = initializeCart("sidebar");
 
     const addInBasket = document.querySelector(".product-buy-button");
     addInBasket.addEventListener("click", (e) => {

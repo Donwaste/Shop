@@ -1,5 +1,10 @@
-import { getProducts } from "./fetch.js";
-import { getCartFromStorage } from "./basketUtils.js";
+import { getProducts } from "/data/fetch.js";
+import { getCartFromStorage } from "/utils/basketUtils.js";
+import {
+  getPriceAsNumber,
+  formatCurrency,
+  calculateTotal,
+} from "/utils/priceUtils.js";
 
 export const initializeCart = (type = "sidebar") => {
   let allProducts = [];
@@ -60,7 +65,7 @@ export const initializeCart = (type = "sidebar") => {
                 product.itemSum
               )}</span>
               <button class="btn delete-item-btn">
-                <img class="item-delete" src="images/bin.png" alt="Delete" />
+                <img class="item-delete" src="/images/bin.png" alt="Delete" />
               </button>
             </div>
           </div>`;
@@ -89,7 +94,7 @@ export const initializeCart = (type = "sidebar") => {
                 </div>
               </div>
               <div class="item-right-side">
-                <img class="item-delete" src="images/bin.png" alt="Delete"/>
+                <img class="item-delete" src="/images/bin.png" alt="Delete"/>
                 <span class="item-sum">${formatCurrency(product.itemSum)}</span>
               </div>
             </div>
@@ -97,26 +102,6 @@ export const initializeCart = (type = "sidebar") => {
         })
         .join("");
     }
-  };
-
-  const formatCurrency = (number) =>
-    number
-      .toFixed(2)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
-      .replace(".", ",") + " ₴";
-
-  const getPriceAsNumber = (priceString) => {
-    const cleanedString = String(priceString)
-      .replace(/[^\d,]/g, "")
-      .replace(",", ".");
-    return parseFloat(cleanedString);
-  };
-
-  const calculateTotal = (items, propertyKey) => {
-    return items.reduce((accumulator, currentItem) => {
-      const value = currentItem[propertyKey];
-      return accumulator + value;
-    }, 0);
   };
 
   const getProductsToRender = () => {
