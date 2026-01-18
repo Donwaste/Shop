@@ -5,6 +5,7 @@ import {
   renderBasket,
 } from "/utils/basketUtils.js";
 import { initializeCart, updateAllCarts } from "/scripts/cartLogic.js";
+import { setupBurgerMenu } from "/utils/burgerUtils.js";
 
 const change = (direction, list) => {
   const params = new URLSearchParams(location.search);
@@ -29,7 +30,7 @@ function renderProduct(product, list) {
    <div class="product-page">
         <div class="product-navigation">
           <div class="product-navigation-left">
-            <a href="index.html" style="color: black">Home /</a>
+            <a href="/index.html" style="color: black">Home /</a>
             <p style="color: dimgray">Your product</p>
           </div>
           <div class="product-navigation-right">
@@ -169,6 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     counterRender();
     updateButtons(currentIndex);
+    setupBurgerMenu();
 
     const renderCart = initializeCart("sidebar");
 

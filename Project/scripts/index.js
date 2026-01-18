@@ -5,8 +5,10 @@ import {
   renderBasket,
 } from "/utils/basketUtils.js";
 import { initializeCart } from "/scripts/cartLogic.js";
+import { setupBurgerMenu } from "/utils/burgerUtils.js";
 
 const productContainer = document.querySelector(".product-grid");
+
 const renderProducts = (products) => {
   if (!Array.isArray(products) || products.length === 0) {
     return;
@@ -34,12 +36,13 @@ const renderProducts = (products) => {
     productContainer.appendChild(productElement);
   });
 };
+
 if (productContainer) {
   productContainer.textContent = "Loading";
   getProducts()
     .then((list) => {
       if (!Array.isArray(list) || list.length === 0) {
-        productContainer.textContent = "Товары не найдены";
+        productContainer.textContent = "No products found";
         return;
       }
       productContainer.innerHTML = "";
@@ -53,7 +56,7 @@ if (productContainer) {
     const productItem = event.target.closest(".product-item");
     if (productItem) {
       const productId = productItem.dataset.id;
-      window.location.href = `../pages/product.html?id=${productId}`;
+      window.location.href = `/pages/product.html?id=${productId}`;
     }
   });
 }
@@ -62,6 +65,34 @@ const cart = getCartFromStorage();
 const totalCount = sumBasket(cart);
 renderBasket(totalCount);
 
+const setupScrollAnimations = () => {
+  const observerOptions = {
+    threshold: 0.2,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !entry.target.classList.contains("animate")) {
+        entry.target.classList.add("animate");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  const promoText = document.querySelector(".promo-text");
+  if (promoText) {
+    observer.observe(promoText);
+  }
+
+  const subtitle = document.querySelector(".subtitle");
+  if (subtitle) {
+    observer.observe(subtitle);
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
   initializeCart("sidebar");
+  setupBurgerMenu();
+  setupScrollAnimations();
 });

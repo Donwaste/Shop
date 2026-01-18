@@ -4,7 +4,9 @@ import {
   renderBasket,
 } from "/utils/basketUtils.js";
 import { initializeCart } from "/scripts/cartLogic.js";
+import { setupBurgerMenu } from "/utils/burgerUtils.js";
 
+setupBurgerMenu();
 initializeCart("page");
 
 initializeCart("sidebar");

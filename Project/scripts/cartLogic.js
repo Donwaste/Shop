@@ -27,11 +27,25 @@ export const initializeCart = (type = "sidebar") => {
     cartLink.addEventListener("click", (event) => {
       event.preventDefault();
       cartWrapper.classList.toggle("open");
+      if (cartWrapper.classList.contains("open")) {
+        document.body.classList.add("cart-open");
+      } else {
+        document.body.classList.remove("cart-open");
+      }
     });
 
     if (cartOverlay) {
       cartOverlay.addEventListener("click", () => {
         cartWrapper.classList.remove("open");
+        document.body.classList.remove("cart-open");
+      });
+    }
+
+    const cartCloseBtn = document.querySelector(".cart-close-btn");
+    if (cartCloseBtn) {
+      cartCloseBtn.addEventListener("click", () => {
+        cartWrapper.classList.remove("open");
+        document.body.classList.remove("cart-open");
       });
     }
   }
@@ -44,31 +58,31 @@ export const initializeCart = (type = "sidebar") => {
     if (type === "page") {
       return products
         .map((product) => {
-          return `
-          <div class="cart-item" data-id="${product.id}">
-            <div class="item-image-wrapper">
-              <img class="item-image" src="${product.image}" alt="${
-            product.name
-          }"/>
-            </div>
-            <div class="item-details">
-              <p class="item-title">${product.name}</p>
-              <span class="item-price-per-unit">${product.price}</span>
-            </div>
-            <div class="item-controls">
-              <div class="product-counter">
-                <button class="btn decrease-btn">-</button>
-                <span class="item-count">${product.count}</span>
-                <button class="btn increase-btn">+</button>
-              </div>
-              <span class="item-subtotal-price">${formatCurrency(
-                product.itemSum
-              )}</span>
-              <button class="btn delete-item-btn">
-                <img class="item-delete" src="/images/bin.png" alt="Delete" />
-              </button>
-            </div>
-          </div>`;
+          return `<div class="cart-item" data-id="${product.id}">
+    <div class="item-image-wrapper">
+        <img class="item-image" src="${product.image}" alt="${product.name}"/>
+    </div>
+    
+    <div class="item-content">
+        <p class="item-title">${product.name}</p>
+        
+        <span class="item-price-per-unit">${product.price}</span>
+        
+        <div class="product-counter">
+            <button class="btn decrease-btn">-</button>
+            <span class="item-count">${product.count}</span>
+            <button class="btn increase-btn">+</button>
+        </div>
+        
+        <span class="item-subtotal-price">${formatCurrency(
+          product.itemSum
+        )}</span>
+        
+        <button class="btn delete-item-btn">
+            <img class="item-delete" src="/images/bin.png" alt="Delete" />
+        </button>
+    </div>
+</div>`;
         })
         .join("");
     } else {
@@ -77,10 +91,10 @@ export const initializeCart = (type = "sidebar") => {
           return `
           <div class="cart-item" data-id="${product.id}">
             <div class="cart-image">
-              <a href="product.html?id=${product.id}">
+              <a href="/pages/product.html?id=${product.id}">
                  <img class="item-image" src="${product.image}" alt="${
-            product.name
-          }"/>
+                   product.name
+                 }"/>
               </a>
             </div>
             <div class="items-sides">
