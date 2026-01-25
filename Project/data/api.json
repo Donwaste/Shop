@@ -2,81 +2,166 @@
   {
     "id": "su001",
     "article": "1023",
-    "image": "images/1.jpg",
-    "name": "Your Product",
-    "price": "1 200,00 ₴",
-    "description": "This model combines comfort and style, perfect for everyday wear. Thanks to the thoughtful cut and high-quality materials, you'll feel confident in any situation. An excellent choice for those who value comfort and a modern look.",
+    "image": "images/products/1.jpg",
+    "name": "Minimalist Orange Tee",
+    "price": 1200.0,
+    "description": "This model combines comfort and style, perfect for everyday wear. Featuring a subtle embroidered orange detail.",
     "bestseller": true,
-    "gender": "unisex"
+    "gender": "unisex",
+    "isNew": false
   },
   {
     "id": "su002",
     "article": "2045",
-    "image": "images/2.jpg",
-    "name": "Your Product",
-    "price": "1 340,80 ₴",
-    "description": "The breathable fabric and minimalist design make this item an excellent choice for active days. Lightness and simplicity are combined with practicality, allowing the item to be used for both walks and meetings with friends.",
+    "image": "images/products/2.jpg",
+    "name": "Palm Sunset Sketch",
+    "price": 1340.8,
+    "description": "The breathable fabric and minimalist design make this item an excellent choice for active days. Light green print on cream base.",
     "bestseller": false,
-    "gender": "male"
+    "gender": "male",
+    "isNew": true
   },
   {
     "id": "su003",
     "article": "3567",
-    "image": "images/3.jpg",
-    "name": "Your Product",
-    "price": "1 540,00 ₴",
-    "description": "It fits the figure perfectly and is suitable for everyday and semi-formal events. The universal style allows you to combine it with various accessories, creating new looks every day.",
+    "image": "images/products/3.jpg",
+    "name": "Eco Paradise Shirt",
+    "price": 1540.0,
+    "description": "It fits the figure perfectly and is suitable for everyday and semi-formal events. Made from 100% organic cotton.",
     "bestseller": true,
-    "gender": "female"
+    "gender": "female",
+    "isNew": false
   },
   {
     "id": "su004",
     "article": "4789",
-    "image": "images/4.jpg",
-    "name": "Your Product",
-    "price": "1 600,00 ₴",
-    "description": "A light and comfortable item for daily wear, it does not restrict movement. The material is pleasant to the body, and the modern design will emphasize your individual style in any setting.",
+    "image": "images/products/4.jpg",
+    "name": "Summer Vibe Outline",
+    "price": 1600.0,
+    "description": "A light and comfortable item for daily wear, it does not restrict movement. Featuring a trendy palm graphic.",
     "bestseller": true,
-    "gender": "unisex"
+    "gender": "unisex",
+    "isNew": true
   },
   {
     "id": "su005",
     "article": "5891",
-    "image": "images/1.jpg",
-    "name": "Your Product",
-    "price": "1 700,00 ₴",
-    "description": "Modern style and comfort in every detail, it pairs well with different clothes. This item will become an indispensable part of your wardrobe, allowing you to create stylish and comfortable outfits for every day.",
+    "image": "images/products/5.jpg",
+    "name": "Urban Noir Basic",
+    "price": 1700.0,
+    "description": "Modern style and comfort in every detail. This deep black tee is an indispensable part of your wardrobe.",
     "bestseller": false,
-    "gender": "female"
+    "gender": "male",
+    "isNew": false
   },
   {
     "id": "su006",
     "article": "6123",
-    "image": "images/2.jpg",
-    "name": "Your Product",
-    "price": "999,00 ₴",
-    "description": "Soft fabric and a concise appearance for versatile looks. Suitable for any season, it is easily combined with other clothing items, providing maximum comfort.",
+    "image": "images/products/6.jpg",
+    "name": "Neon Love Typography",
+    "price": 999.0,
+    "description": "Soft fabric and a bold appearance. The vibrant 'LOVE' print adds a splash of color to your outfit.",
     "bestseller": false,
-    "gender": "male"
+    "gender": "female",
+    "isNew": true
   },
   {
     "id": "su007",
     "article": "7345",
-    "image": "images/3.jpg",
-    "name": "Your Product",
-    "price": "1 230,00 ₴",
-    "description": "Premium quality and durability, suitable for any season. This model will be an excellent choice for those who value reliability and style, and also care about their comfort every day.",
+    "image": "images/products/7.jpg",
+    "name": "Midnight Classic",
+    "price": 1230.0,
+    "description": "Premium quality and durability. A clean, blank black tee that works with any style.",
     "bestseller": true,
-    "gender": "unisex"
+    "gender": "unisex",
+    "isNew": false
   },
   {
     "id": "su008",
     "article": "8567",
-    "image": "images/4.jpg",
-    "name": "Your Product",
-    "price": "1 200,00 ₴",
-    "description": "A classic, reliable option for your wardrobe, easily combined. Thanks to the universal design and high-quality craftsmanship, this item will last you a long time and will bring you joy every day.",
+    "image": "images/products/8.jpg",
+    "name": "WTF Ocean Graphic",
+    "price": 1200.0,
+    "description": "A classic, reliable option with a bold nautical print. Excellent choice for street style.",
     "bestseller": false,
-    "gender": "female"
+    "gender": "male",
+    "isNew": false
+  },
+  {
+    "id": "su009",
+    "article": "9012",
+    "image": "images/products/9.jpg",
+    "name": "SICH Stealth Edition",
+    "price": 1850.0,
+    "description": "Limited edition black tee with red accent on the sleeve. High-density cotton for a structured fit.",
+    "bestseller": true,
+    "gender": "unisex",
+    "isNew": true
+  },
+  {
+    "id": "su010",
+    "article": "1122",
+    "image": "images/products/1.jpg",
+    "name": "Fruit Punch White",
+    "price": 1100.0,
+    "description": "Simple, clean, and refreshing. Perfect for hot summer days.",
+    "bestseller": false,
+    "gender": "female",
+    "isNew": true
+  },
+  {
+    "id": "su011",
+    "article": "2233",
+    "image": "images/products/5.jpg",
+    "name": "Night Walker Tee",
+    "price": 1450.0,
+    "description": "Breathable dark fabric designed for those who prefer the night aesthetic.",
+    "bestseller": false,
+    "gender": "male",
+    "isNew": false
+  },
+  {
+    "id": "su012",
+    "article": "3344",
+    "image": "images/products/6.jpg",
+    "name": "Pop-Art Statement",
+    "price": 1050.0,
+    "description": "Make a statement with this colorful print. Great for festivals and casual outings.",
+    "bestseller": true,
+    "gender": "unisex",
+    "isNew": false
+  },
+  {
+    "id": "su013",
+    "article": "4455",
+    "image": "images/products/8.jpg",
+    "name": "Deep Sea Hunter",
+    "price": 1300.0,
+    "description": "Inspired by maritime life, this tee brings a rugged look to your collection.",
+    "bestseller": false,
+    "gender": "male",
+    "isNew": true
+  },
+  {
+    "id": "su014",
+    "article": "5566",
+    "image": "images/products/9.jpg",
+    "name": "Cyber Edge Black",
+    "price": 1900.0,
+    "description": "Tech-wear inspired design with a minimalist logo. Durable and stylish.",
+    "bestseller": false,
+    "gender": "unisex",
+    "isNew": true
+  },
+  {
+    "id": "su015",
+    "article": "6677",
+    "image": "images/products/2.jpg",
+    "name": "Pastel Palm Breeze",
+    "price": 1280.0,
+    "description": "Soft colors for a relaxed look. Feels like a holiday even on a workday.",
+    "bestseller": true,
+    "gender": "female",
+    "isNew": false
   }
 ]

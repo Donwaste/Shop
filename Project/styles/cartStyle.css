@@ -14,7 +14,6 @@ button {
 
 body.cart-open {
   overflow: hidden;
-  padding-right: 15px;
 }
 
 /* ============================================
@@ -121,7 +120,9 @@ body.cart-open {
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
@@ -323,11 +324,6 @@ body.cart-open {
 /* ============================================
   MEDIA QUERIES
   ============================================ */
-@media (max-width: 1200px) {
-  body.cart-open {
-    padding-right: 0px;
-  }
-}
 @media (max-width: 992px) {
   .cart-side {
     width: 360px;

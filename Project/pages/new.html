@@ -8,12 +8,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="/styles/index.css" />
-    <link rel="stylesheet" href="/styles/cartStyle.css" />
-    <link rel="stylesheet" type="text/css" href="/styles/basket.css" />
-    <script defer src="/scripts/basket.js" type="module"></script>
-    <script defer src="/utils/basketUtils.js" type="module"></script>
-    <script defer src="/scripts/cartLogic.js" type="module"></script>
-    <script defer src="/scripts/index.js" type="module"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/cartStyle.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/catalog.css" />
+    <script defer src="/scripts/catalog.js" type="module"></script>
   </head>
   <body>
     <header>
@@ -29,7 +26,7 @@
         <div class="menu-section">
           <ul class="menu">
             <li class="menu-item">
-              <a href="new.html" class="menu-link">New Arrivals</a>
+              <a href="new.html" class="menu-link active">New Arrivals</a>
             </li>
             <li class="menu-item">
               <a href="women.html" class="menu-link">Women</a>
@@ -87,72 +84,11 @@
         </div>
       </nav>
     </header>
+    <div class="info-section">
+      <h1 class="info-section-text">New Arrivals</h1>
+    </div>
     <main>
-      <section class="cart-section">
-        <h2 class="section-title">My Cart</h2>
-
-        <div class="cart-items-list"></div>
-        <div class="cart-options">
-          <div class="promo-container">
-            <button class="option-btn add-promo-btn">
-              <img
-                class="option-icon"
-                src="/images/icons/promo.svg"
-                alt="Promo Code"
-              />
-              <span>Add a promotional code</span>
-            </button>
-            <div class="promo-input-container">
-              <input
-                type="text"
-                class="promo-input"
-                placeholder="for example, DISCOUNT50"
-              />
-              <button class="btn apply-promo-btn">Apply</button>
-            </div>
-          </div>
-          <div class="wish-container">
-            <button class="option-btn add-wish-btn">
-              <img
-                class="option-icon"
-                src="/images/icons/whish.svg"
-                alt="Wish"
-              />
-              <span>Add a wish</span>
-            </button>
-
-            <textarea
-              class="wish-textarea"
-              placeholder="For example, Leave at the front door"
-              rows="4"
-            ></textarea>
-          </div>
-        </div>
-      </section>
-
-      <aside class="details-section">
-        <h2 class="section-title">Order Details</h2>
-        <div class="details-content">
-          <div class="details-row">
-            <span>Subtotal</span>
-            <span></span>
-          </div>
-          <div class="details-row">
-            <a href="#" class="delivery-link">Estimated delivery cost</a>
-          </div>
-        </div>
-        <div class="details-total">
-          <div class="details-row total-row">
-            <span>Total</span>
-            <span></span>
-          </div>
-          <button class="checkout-btn">Place Order</button>
-          <p class="secure-info">
-            <img src="/images/icons/padlock.png" class="padlock-icon" /> Secure
-            order
-          </p>
-        </div>
-      </aside>
+      <div class="product-grid"></div>
     </main>
     <footer class="footer">
       <div class="footer-top">

@@ -6,6 +6,20 @@ import {
   calculateTotal,
 } from "/utils/priceUtils.js";
 
+const preventScroll = () => {
+  const scrollbarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
+  if (scrollbarWidth > 0) {
+    document.body.style.paddingRight = scrollbarWidth + "px";
+  }
+  document.body.style.overflow = "hidden";
+};
+
+const allowScroll = () => {
+  document.body.style.paddingRight = "";
+  document.body.style.overflow = "";
+};
+
 export const initializeCart = (type = "sidebar") => {
   let allProducts = [];
   const cartContainer = document.querySelector(".cart-items");
@@ -23,20 +37,27 @@ export const initializeCart = (type = "sidebar") => {
     totalElement = document.querySelector(".total-row span:last-child");
   }
 
-  if (type === "sidebar" && cartLink && cartWrapper) {
+  if (cartLink && cartWrapper) {
     cartLink.addEventListener("click", (event) => {
       event.preventDefault();
-      cartWrapper.classList.toggle("open");
-      if (cartWrapper.classList.contains("open")) {
-        document.body.classList.add("cart-open");
-      } else {
+
+      const isOpen = cartWrapper.classList.contains("open");
+
+      if (isOpen) {
+        cartWrapper.classList.remove("open");
+        allowScroll();
         document.body.classList.remove("cart-open");
+      } else {
+        cartWrapper.classList.add("open");
+        preventScroll();
+        document.body.classList.add("cart-open");
       }
     });
 
     if (cartOverlay) {
       cartOverlay.addEventListener("click", () => {
         cartWrapper.classList.remove("open");
+        allowScroll();
         document.body.classList.remove("cart-open");
       });
     }
@@ -45,6 +66,7 @@ export const initializeCart = (type = "sidebar") => {
     if (cartCloseBtn) {
       cartCloseBtn.addEventListener("click", () => {
         cartWrapper.classList.remove("open");
+        allowScroll();
         document.body.classList.remove("cart-open");
       });
     }
@@ -66,7 +88,7 @@ export const initializeCart = (type = "sidebar") => {
     <div class="item-content">
         <p class="item-title">${product.name}</p>
         
-        <span class="item-price-per-unit">${product.price}</span>
+        <span class="item-price-per-unit">${formatCurrency(product.price)}</span>
         
         <div class="product-counter">
             <button class="btn decrease-btn">-</button>
@@ -75,11 +97,11 @@ export const initializeCart = (type = "sidebar") => {
         </div>
         
         <span class="item-subtotal-price">${formatCurrency(
-          product.itemSum
+          product.itemSum,
         )}</span>
         
         <button class="btn delete-item-btn">
-            <img class="item-delete" src="/images/bin.png" alt="Delete" />
+            <img class="item-delete" src="/images/icons/bin.png" alt="Delete" />
         </button>
     </div>
 </div>`;
@@ -100,7 +122,7 @@ export const initializeCart = (type = "sidebar") => {
             <div class="items-sides">
               <div class="item-left-side">
                 <span class="item-text">${product.name}</span>
-                <span class="item-pice">${product.price}</span>
+                <span class="item-pice">${formatCurrency(product.price)}</span>
                 <div class="product-counter">
                   <button class="btn decrease-btn">-</button>
                   <span class="item-count">${product.count}</span>
@@ -108,7 +130,7 @@ export const initializeCart = (type = "sidebar") => {
                 </div>
               </div>
               <div class="item-right-side">
-                <img class="item-delete" src="/images/bin.png" alt="Delete"/>
+                <img class="item-delete" src="/images/icons/bin.png" alt="Delete"/>
                 <span class="item-sum">${formatCurrency(product.itemSum)}</span>
               </div>
             </div>
@@ -124,7 +146,7 @@ export const initializeCart = (type = "sidebar") => {
 
     cartItems.forEach((cartItem) => {
       const foundProduct = allProducts.find(
-        (product) => product.id === cartItem.id
+        (product) => product.id === cartItem.id,
       );
       if (foundProduct) {
         const priceNumber = getPriceAsNumber(foundProduct.price);
@@ -147,7 +169,7 @@ export const initializeCart = (type = "sidebar") => {
 
     if (cartSum) {
       cartSum.textContent = formatCurrency(
-        calculateTotal(productsToRender, "itemSum")
+        calculateTotal(productsToRender, "itemSum"),
       );
     }
 

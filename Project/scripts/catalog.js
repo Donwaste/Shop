@@ -1,12 +1,5 @@
 import { getProducts } from "/data/fetch.js";
-import {
-  getCartFromStorage,
-  sumBasket,
-  renderBasket,
-} from "/utils/basketUtils.js";
-import { formatCurrency } from "/utils/priceUtils.js";
 import { initializeCart } from "/scripts/cartLogic.js";
-import { setupBurgerMenu } from "/utils/burgerUtils.js";
 
 const productContainer = document.querySelector(".product-grid");
 
@@ -14,18 +7,35 @@ const renderProducts = (products) => {
   if (!Array.isArray(products) || products.length === 0) {
     return;
   }
+  const pathName = window.location.pathname;
+  let filename = pathName.split("/").pop();
+  if (filename === "new.html") {
+    products = products.filter((product) => product.isNew);
+  }
+  if (filename === "men.html") {
+    products = products.filter(
+      (product) => product.gender === "male" || product.gender === "unisex",
+    );
 
-  const sortedProducts = [...products].sort((a, b) => {
-    if (a.gender === "unisex" && b.gender !== "unisex") {
-      return -1;
-    }
-    if (a.gender !== "unisex" && b.gender === "unisex") {
-      return 1;
-    }
-    return 0;
-  });
+    products.sort((a, b) => {
+      if (a.gender === "male" && b.gender !== "male") return -1;
+      if (a.gender !== "male" && b.gender === "male") return 1;
+      return 0;
+    });
+  }
 
-  const limitedProducts = sortedProducts.slice(0, 8);
+  if (filename === "women.html") {
+    products = products.filter(
+      (product) => product.gender === "female" || product.gender === "unisex",
+    );
+
+    products.sort((a, b) => {
+      if (a.gender === "female" && b.gender !== "female") return -1;
+      if (a.gender !== "female" && b.gender === "female") return 1;
+      return 0;
+    });
+  }
+  const limitedProducts = products.slice(0, 8);
 
   limitedProducts.forEach((product) => {
     const productElement = document.createElement("div");
@@ -76,38 +86,4 @@ if (productContainer) {
   });
 }
 
-const cart = getCartFromStorage();
-const totalCount = sumBasket(cart);
-renderBasket(totalCount);
-
-const setupScrollAnimations = () => {
-  const observerOptions = {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && !entry.target.classList.contains("animate")) {
-        entry.target.classList.add("animate");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  const promoText = document.querySelector(".promo-text");
-  if (promoText) {
-    observer.observe(promoText);
-  }
-
-  const subtitle = document.querySelector(".subtitle");
-  if (subtitle) {
-    observer.observe(subtitle);
-  }
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  initializeCart("sidebar");
-  setupBurgerMenu();
-  setupScrollAnimations();
-});
+initializeCart("sidebar");

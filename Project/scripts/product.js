@@ -4,6 +4,7 @@ import {
   sumBasket,
   renderBasket,
 } from "/utils/basketUtils.js";
+import { formatCurrency } from "/utils/priceUtils.js";
 import { initializeCart, updateAllCarts } from "/scripts/cartLogic.js";
 import { setupBurgerMenu } from "/utils/burgerUtils.js";
 
@@ -37,12 +38,12 @@ function renderProduct(product, list) {
             <div class="navigation-buttons">
               <a href="${change(
                 "-",
-                list
+                list,
               )}" class="nav-btn" data-direction="-" id="prev-btn">&lt; Previous</a>
               <span class="divider">|</span>
               <a href="${change(
                 "+",
-                list
+                list,
               )}" class="nav-btn" id="next-btn">Next &gt;</a>
             </div>
           </div>
@@ -60,9 +61,9 @@ function renderProduct(product, list) {
             <div class="product-interaction">
               <h1>${product.name}</h1>
               <p>Article: ${product.article}</p>
-              <span class="product-price" style="font-size: 24px; margin-bottom: 20px; display: block">${
-                product.price
-              }</span>
+              <span class="product-price" style="font-size: 24px; margin-bottom: 20px; display: block">${formatCurrency(
+                product.price,
+              )}</span>
               <p>Quantity *</p>
               <div class="product-counter-page">
                   <button class="btn" id="decrease">-</button>
@@ -154,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const accordions = document.querySelectorAll(
-      ".product-details-accordion .accordion-item"
+      ".product-details-accordion .accordion-item",
     );
     accordions.forEach((currentAccordion) => {
       currentAccordion.addEventListener("toggle", () => {
