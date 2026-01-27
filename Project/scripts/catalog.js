@@ -1,5 +1,6 @@
 import { getProducts } from "/data/fetch.js";
 import { initializeCart } from "/scripts/cartLogic.js";
+import { formatCurrency } from "/utils/priceUtils.js";
 
 const productContainer = document.querySelector(".product-grid");
 
